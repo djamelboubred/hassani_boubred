@@ -1,5 +1,6 @@
 # hassani_boubred
 project c collaboration between Hassani and boubred
+
 FONCTIONS PRINCIPALES PAR MODULE:
 
 ## 1. Recherche de la séquence codante de taille maximale
