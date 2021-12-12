@@ -12,7 +12,7 @@ FONCTIONS PRINCIPALES PAR MODULE:
 ``char* traduction( char sequence (ARN))`` renvoie char* sequence (proteine)
 
 ## 4. Calcul du score d’identité entre deux séquences
-``float Calcul_score_identite( FILE fichier1, FILE fichier 2 `` ( avec fichier1 et fichier2 contenant sequences) renvoie un nombre (=score identite)
+``float Calcul_score_identite( FILE* fichier1, FILE* fichier 2) `` ( avec fichier1 et fichier2 contenant sequences) renvoie un nombre (=score identite)
 
 ## 5. Calcul du score de similarité de polarité entre deux séquences protéiques
 ``int Calcul_score_similarite( FILE* fichier1, FILE* fichier 2)`` renvoie un nombre d'AA similaires par type (=score similarite de polarite)
