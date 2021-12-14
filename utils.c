@@ -2,10 +2,10 @@
 
 void get_path_from_user(char* path_input){
 	printf("Veuillez saisir le nom de votre fichier contenant la/les séquence(s):\n");
-	
+
 	scanf("%s",path_input)
 	FILE* fpath_input= fopen("path_input","r");
-		if (!fpath_input){
+		if (!fpath_input){dd
 			printf(stderr, "L'ouverture a échoué");
 			exit(1);
 		}
@@ -13,13 +13,13 @@ void get_path_from_user(char* path_input){
 }
 
 void extract_sequence(const char* path_input, char* sequence){
-	FILE* foutput =NULL;
+	FILE* fextract =NULL;
 	int i=0;
-	foutput = fopen("path_input", "r");
+	fextract = fopen("path_input", "r");
 		if (!foutput){
 			fprintf(stderr, "L'ouverture a échoué");
-			exit(1);
-		}	
+			return EXIT_FAILURE;
+		}
 		while (fgets(fpath_input) !=EOF){
 			 sequence[i] = fgets(fpath_input, "%80s")
 			 i++;
@@ -37,7 +37,7 @@ void save_sequence(const char* path_output, char* sequence){
 			printf(stderr, "L'ouverture a échoué");
 			exit(1);
 		}
-		// pas dd'utilisation de tableau ni de matrix utilisisere une suite de charactère pour la fonction en dessous et au dessus 
+		// pas dd'utilisation de tableau ni de matrix utilisisere une suite de charactère pour la fonction en dessous et au dessus
 			while (fin!=0){
 				if(sequence[i][j] = ">"){
 				fputs(sequence.fasta, "%s\n", sequence[0]);
@@ -47,4 +47,4 @@ void save_sequence(const char* path_output, char* sequence){
 					fin = 0;
 					}
 				else{
-					fputc(sequence.fasta, "%c\n", sequence[i][j]	
+					fputc(sequence.fasta, "%c\n", sequence[i][j]
