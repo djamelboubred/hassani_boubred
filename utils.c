@@ -1,50 +1,59 @@
+
 #include "utils.h"
 
+/*Stocke dans path_input un nom de fichier saisi par l'utilisateur*/
+
 void get_path_from_user(char* path_input){
-	printf("Veuillez saisir le nom de votre fichier contenant la/les séquence(s):\n");
-	
-	scanf("%s",path_input)
-	FILE* fpath_input= fopen("path_input","r");
-		if (!fpath_input){
+	printf("Veuillez saisir le nom de votre fichier contenant la séquence à analyser:\n");
+	scanf("%s",path_input);
+	FILE* finput= fopen("path_input","r");
+		if (!finput){
 			printf(stderr, "L'ouverture a échoué");
-			exit(1);
+			return EXIT_FAILURE ;
 		}
-	fclose(fpath_input);
+	fclose(finput);
 }
 
-void extract_sequence(const char* path_input, char* sequence){
-	FILE* foutput =NULL;
-	int i=0;
-	foutput = fopen("path_input", "r");
-		if (!foutput){
-			fprintf(stderr, "L'ouverture a échoué");
-			exit(1);
-		}	
-		while (fgets(fpath_input) !=EOF){
-			 sequence[i] = fgets(fpath_input, "%80s")
-			 i++;
-		}
-		fclose(foutput);
-		exit(0);
+/*Stocke dans la variable sequence, une séquence contenue dans un fichier au format FASTA accessible via le chemin précisé en path_input*/
 
-void save_sequence(const char* path_output, char* sequence){
-	FILE* finput;
-	int i = 0;
-	int j = 0;
-	int fin =1;
-	finput = fopen("sequence.fasta", "a");
-		if(!finput){
+void extract_sequence(const char* path_input, char* sequence){
+
+	FILE* fextract=fopen("path_input","r");
+	if (!fextract){
 			printf(stderr, "L'ouverture a échoué");
-			exit(1);
+			return EXIT_FAILURE;
+	}
+
+	sequence = malloc(taille * sizeof(int));/*Allocation dynamique d'un tableau car je ne sais pas d'avance la taille de la sequence*/
+	if (taille == NULL){ /*message d'erreur si la demande de memoire a échoué*/
+        exit(0);
+  }
+	/* Stocker les elements du fichier dans le tableau sequence*/
+	/* Je ne veux pas inserer les retours a la ligne, ni prendre en compte la 1er ligne*/
+	while(fgetc(fextract)!=EOF && fgets(fextract)!=0){
+		if(fgetc(fextract)!="\n"){
+			sequence=fgetc(fextract);
 		}
-		// pas dd'utilisation de tableau ni de matrix utilisisere une suite de charactère pour la fonction en dessous et au dessus 
-			while (fin!=0){
-				if(sequence[i][j] = ">"){
-				fputs(sequence.fasta, "%s\n", sequence[0]);
-				}
-			else{
-				if((sequence[i][j] = "")&& (j<80)){
-					fin = 0;
-					}
-				else{
-					fputc(sequence.fasta, "%c\n", sequence[i][j]	
+		else{
+			fgetc(fextract);
+		}
+	fclose(fextract);
+	}
+
+/* Ecrit dans un fichier la séquence contenue dans la variable sequence
+en renvoyant à la ligne tous les 80 caractères, comme dans le format FASTA*/
+	void save_sequence(const char* path_output, char* sequence){
+		FILE* fsequence=fopen("path_output","w");
+		if (!fextract){
+				printf(stderr, "L'ouverture a échoué");
+				return EXIT_FAILURE;
+		}
+		int i=0;
+		while(sequence[i]*!="\0"){
+			for(i=0,i<80,i++){
+				fputc(sequence[i]*);
+			}
+			fputc("\n");
+		}
+		fclose(fsequence);
+	}
