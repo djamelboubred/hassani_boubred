@@ -30,7 +30,7 @@ void extract_sequence(const char* path_input, char* sequence){
   }
 	/* Stocker les elements du fichier dans le tableau sequence*/
 	/* Je ne veux pas inserer les retours a la ligne, ni prendre en compte la 1er ligne*/
-	while(fgetc(fextract)!=EOF && fgets(fextract)!=0){
+	while(fgetc(fextract)!=EOF){
 		if(fgetc(fextract)!="\n"){
 			sequence=fgetc(fextract);
 		}
