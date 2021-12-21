@@ -11,7 +11,7 @@ float Calcul_score_identite( FILE* fichier1, FILE* fichier 2){
   int k=0;/*compteur résultat alignement*/
   int nb_identique=0;
   int taille=0; /*taille sequence 1 et 2*/
-  alignement = malloc(taille * sizeof(int));
+  alignement = malloc(taille * sizeof(int));/*alignement=résultat de la séquence alignée*/
 	if (taille == NULL){
         exit(0);
   }
