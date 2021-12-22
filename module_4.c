@@ -105,7 +105,6 @@ int main(){
   char sequence2[taille2];
 
   extract_sequence(fichier1,sequence1);
-<<<<<<< Updated upstream
 
   extract_sequence(fichier2,sequence2);
 
