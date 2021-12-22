@@ -16,18 +16,26 @@ void get_path_from_user(char* path_input){
 
 /*Stocke dans la variable sequence, une séquence contenue dans un fichier au format FASTA accessible via le chemin précisé en path_input*/
 
-void extract_sequence(const char* path_input, char* sequence){
+/*Pour extraire une sequence d'un fichier en la placant dans une variable sequence*/
+void extract_sequence(FILE* fichier, char sequence[])
+{
+  int i=-1;
+  char lettre_lu;
+  fseek(fichier,0,SEEK_SET);
+  while(fgetc(fichier)!='\n') /*On avance le curseur jusqu'au premier saut de ligne*/
+  {
 
-	FILE* fextract=fopen("path_input","r");
-	if (!fextract){
-			printf(stderr, "L'ouverture a échoué");
-			return EXIT_FAILURE;
-	}
-
-	sequence = malloc(taille * sizeof(int));/*Allocation dynamique d'un tableau car je ne sais pas d'avance la taille de la sequence*/
-	if (taille == NULL){ /*message d'erreur si la demande de memoire a échoué*/
-        exit(0);
   }
+
+  while((lettre_lu=fgetc(fichier))!=EOF)
+  {
+    if(lettre_lu!='\n')
+    {
+      i++;
+      sequence[i]=lettre_lu;
+    }
+  }
+<<<<<<< Updated upstream
 	/* Stocker les elements du fichier dans le tableau sequence*/
 	/* Je ne veux pas inserer les retours a la ligne, ni prendre en compte la 1er ligne*/
 	while(fgetc(fextract)!=EOF){
@@ -39,6 +47,9 @@ void extract_sequence(const char* path_input, char* sequence){
 		}
 	fclose(fextract);
 	}
+=======
+}
+>>>>>>> Stashed changes
 
 /* Ecrit dans un fichier la séquence contenue dans la variable sequence
 en renvoyant à la ligne tous les 80 caractères, comme dans le format FASTA*/
