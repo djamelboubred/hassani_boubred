@@ -6,11 +6,17 @@ int calcul_taille_fichier(FILE* fichier)
 {
   int i=0;
   char lettre_lu;
-  while(fgetc(fichier)!='\n')
+  if(fgetc(fichier)=='>')
   {
+    while(fgetc(fichier)!='\n')
+    {
 
+    }
   }
-
+  else
+  {
+    fseek(fichier,0,SEEK_SET);
+  }
 
   while((lettre_lu=fgetc(fichier))!=EOF)
   {
@@ -26,11 +32,17 @@ void extract_sequence(FILE* fichier, char sequence[])
   int i=-1;
   char lettre_lu;
   fseek(fichier,0,SEEK_SET);
-  while(fgetc(fichier)!='\n') /*On avance le curseur jusqu'au premier saut de ligne*/
+  if(fgetc(fichier)=='>')
   {
+    while(fgetc(fichier)!='\n') /*On avance le curseur jusqu'au premier saut de ligne*/
+    {
 
+    }
   }
-
+  else
+  {
+    fseek(fichier,0,SEEK_SET);
+  }
   while((lettre_lu=fgetc(fichier))!=EOF)
   {
     if(lettre_lu!='\n')
