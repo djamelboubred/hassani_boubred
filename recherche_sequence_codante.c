@@ -25,7 +25,7 @@ char* sequence_complementaire(char sequence[], int taille){ //prend ue séquence
 		j++;
 	}	
 		comp[j] ='\0';	
-		printf("comp=\t3'-%s-5'\n",comp);
+		printf("comp=\t5'-%s-3'\n",comp);
 
 	return comp;
 }
@@ -37,7 +37,7 @@ char* recherche_sequence_codante(/*char* path_input*/char sequence[], int taille
 	char* sequence_comp = malloc(sizeof(char)*taille);
 	int debut = TRUE; //si on commence 0 sinon 1 
 	int k =0; // position du premier nucléotide afin de pouvoir initier l'écriture de notre cds la plus grande lors de la fin du traitement de notre séquence  
-	int j = 0; //compteur nombres de aa
+	int j = 0; //compteur nombres de nt
 	int i =0; // compteur en respectant le cadre de lecture et la lecture de codon(+3) à chaque tour
 	int max =0; // valeur max de la taille de la CDS // mettre pointeur 
 	int brin_sens = TRUE; //Valeur 0 si on est dans le cas du brin sens et 1 si brin anti-sens
@@ -62,13 +62,13 @@ char* recherche_sequence_codante(/*char* path_input*/char sequence[], int taille
 				i=cadre_lecture;
 				debut=FALSE;
 				}
-				while((j==0)||(i<taille-4)){ //prend taille -4 car on exclut la lecture du caractère fin de chaîne de caractère
+				while((j==0)||(i<taille)){ //prend taille -4 car on exclut la lecture du caractère fin de chaîne de caractère
 					if ((sequence[i]=='A') && (sequence[i+1]=='T') && (sequence[i+2]=='G')){ // si on trouve notre codon start
 						j=3;
 						k=i;	// on prend la position du codon start
 						while (((sequence[i]!='T') && (sequence[i+1]!='A') && (sequence[i+2]!='A')) ||
 	      	 			((sequence[i]!='T') && (sequence[i+1]!='A') && (sequence[i+2]!='G')) || 
-					((sequence[i]!='T') && (sequence[i+1]!='G') && (sequence[i+2]!='A'))||(i<taille)){ // on cherche le codon stop après avoir trouvé un codon start
+					((sequence[i]!='T') && (sequence[i+1]!='G') && (sequence[i+2]!='A'))||((sequence[i]=='\0')||(sequence[i+1]=='\0')||(sequence[i+2]=='\0'))){ // on cherche le codon stop après avoir trouvé un codon start
 
 						i= i+3;
 						j= j+3;	
@@ -85,13 +85,11 @@ char* recherche_sequence_codante(/*char* path_input*/char sequence[], int taille
 				i=(taille-1) - cadre_lecture;
 				debut=FALSE;
 				}	
-				while((j==0)||(i<taille-4)){
+				while((j==0)||(i<taille)){
 					if ((sequence_comp[i]=='A') && (sequence_comp[i+1]=='T') && (sequence_comp[i+2]=='G')){ // si on trouve notre codon start
 						j=3;
 						k=i;
-						while (((sequence_comp[i]!='T') && (sequence_comp[i+1]!='A') && (sequence_comp[i+2]!='A')) ||
-	      	 			((sequence[i]!='T') && (sequence[i+1]!='A') && (sequence[i+2]!='G')) || 
-					((sequence[i]!='T') && (sequence[i+1]!='G') && (sequence[i+2]!='A'))||(i<taille)){ // on cherche le codon stop après avoir trouvé un codon start
+						while (((sequence_comp[i]!='T') && (sequence_comp[i+1]!='A') && (sequence_comp[i+2]!='A')) || ((sequence[i]!='T') && (sequence[i+1]!='A') && (sequence[i+2]!='G')) ||((sequence[i]!='T') && (sequence[i+1]!='G') && (sequence[i+2]!='A'))||((sequence_comp[i]=='\0')||(sequence_comp[i+1]=='\0')||(sequence_comp[i+2]=='\0'))){ // on cherche le codon stop après avoir trouvé un codon start
 
 						i= i+3;
 						j= j+3;
@@ -111,7 +109,7 @@ char* recherche_sequence_codante(/*char* path_input*/char sequence[], int taille
 				debut=TRUE;
 			}
 			i=i+1;
-			if ((brin_sens == FALSE)&&(cadre_lecture >3)){
+			if ((brin_sens == FALSE)&&(cadre_lecture =3)){
 				fin = TRUE;
 			}
 		}
@@ -119,12 +117,15 @@ char* recherche_sequence_codante(/*char* path_input*/char sequence[], int taille
 		if(max!=0){// on verifie que notre fonction fonctionne en ayant trouvé au moins une CDS
 			i=0;	//on réinitialise notre compteur
 			if(max_brin == TRUE){
-				while (i<=max){	// j étant le nombre de nucléotides tant que notre compteur est infrieur ou égal au nombre de nucléotide max on boucle
-				k = position;
-				seq[i] = sequence[k];
-				i++;
-				k++;
+				k=position;
+				while (i<max){	// j étant le nombre de nucléotides tant que notre compteur est infrieur ou égal au nombre de nucléotide max on boucle
+					seq[i] = sequence[k];
+					printf("seq[%d]=%c\n",i,seq[i]);//test
+					i++;
+					k++;
 				}
+				seq[i]='\0';
+				printf("position=%d\n",position);//test
 			}
 			else{
 				while (i<=max){	// j étant le nombre de nucléotides tant que notre compteur est infrieur ou égal au nombre de nucléotide max on boucle
@@ -133,9 +134,11 @@ char* recherche_sequence_codante(/*char* path_input*/char sequence[], int taille
 					i++;
 					k++;
 				}
+				seq[i]='\0';
 			}
 			printf("cadre lecture : %d\nbrin_sens:%d\t(0 si sens et 1 si anti-sens)\nCDS:\t5'-%s-3'\n",max_cadre,max_brin,seq);
 			printf("sequence = %s\n",sequence);
+			printf("max =%d\t%d",max,j);//test
 		}
 		else{
 			printf("Aucune CDS trouvée, ou le programme n'a pas fonctionné!!\n");
