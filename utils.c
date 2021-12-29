@@ -1,55 +1,43 @@
 
 #include "utils.h"
 
-/*Stocke dans path_input un nom de fichier saisi par l'utilisateur*/
+/*Stocke dans nom_fichier un nom de fichier saisi par l'utilisateur*/
 
-void get_path_from_user(char* path_input){
-	printf("Veuillez saisir le nom de votre fichier contenant la séquence à analyser:\n");
-	scanf("%s",path_input);
-	FILE* finput= fopen("path_input","r");
-		if (!finput){
-			printf(stderr, "L'ouverture a échoué");
-			return EXIT_FAILURE ;
-		}
-	fclose(finput);
+void stocker_nom_fichier(char* nom_fichier)
+{
+  printf("Veuillez saisir le nom de votre fichier contenant la ou les séquences à analyser: ");
+  scanf("%s",nom_fichier);
+  printf("%s\n",nom_fichier);
 }
 
 /*Stocke dans la variable sequence, une séquence contenue dans un fichier au format FASTA accessible via le chemin précisé en path_input*/
 
-/*Pour extraire une sequence d'un fichier en la placant dans une variable sequence*/
-void extract_sequence(FILE* fichier, char sequence[])
+void extract_sequence_de_proteine(FILE* fichier, proteine sequence[])
 {
   int i=-1;
   char lettre_lu;
   fseek(fichier,0,SEEK_SET);
-  while(fgetc(fichier)!='\n') /*On avance le curseur jusqu'au premier saut de ligne*/
+  if(fgetc(fichier)=='>')
   {
+    while(fgetc(fichier)!='\n') /*On avance le curseur jusqu'au premier saut de ligne*/
+    {
 
+    }
   }
-
+  else
+  {
+    fseek(fichier,0,SEEK_SET);
+  }
   while((lettre_lu=fgetc(fichier))!=EOF)
   {
     if(lettre_lu!='\n')
     {
       i++;
-      sequence[i]=lettre_lu;
+      sequence[i]=*creation_proteine(lettre_lu);
     }
   }
-<<<<<<< Updated upstream
-	/* Stocker les elements du fichier dans le tableau sequence*/
-	/* Je ne veux pas inserer les retours a la ligne, ni prendre en compte la 1er ligne*/
-	while(fgetc(fextract)!=EOF){
-		if(fgetc(fextract)!="\n"){
-			sequence=fgetc(fextract);
-		}
-		else{
-			fgetc(fextract);
-		}
-	fclose(fextract);
-	}
-=======
+  sequence[i+1]=*creation_proteine('\0');
 }
->>>>>>> Stashed changes
 
 /* Ecrit dans un fichier la séquence contenue dans la variable sequence
 en renvoyant à la ligne tous les 80 caractères, comme dans le format FASTA*/
