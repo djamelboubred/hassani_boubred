@@ -157,4 +157,6 @@ int main(){
   extract_sequence_de_proteine(fichier1,sequence1);
   extract_sequence_de_proteine(fichier2,sequence2);
   Calcul_polarite(sequence1,sequence2);
+  fclose(fichier1);
+  fclose(fichier2);
 }
