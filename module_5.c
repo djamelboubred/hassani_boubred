@@ -122,10 +122,22 @@ void Calcul_polarite(proteine sequence1[],proteine sequence2[])
    printf("Polarite identique:%d\n",polarite_identique);
 }
 
+void stocker_nom_fichier(char* nom_fichier)
+{
+  printf("Veuillez saisir le nom de votre fichier contenant la ou les séquences à analyser: ");
+  scanf("%s",nom_fichier);
+  printf("%s\n",nom_fichier);
+}
+
 int main(){
 
-  FILE* fichier1=fopen("fichier1.txt","r");
-  FILE* fichier2=fopen("fichier2.txt","r");
+  char* nom_fichier1=malloc(sizeof(char));
+  char* nom_fichier2=malloc(sizeof(char));
+  stocker_nom_fichier(nom_fichier1);
+  stocker_nom_fichier(nom_fichier2);
+
+  FILE* fichier1=fopen(nom_fichier1,"r");
+  FILE* fichier2=fopen(nom_fichier2,"r");
   if (!fichier1 || !fichier2)
   {
 			fprintf(stderr, "L'ouverture a échoué");
