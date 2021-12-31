@@ -10,9 +10,8 @@ void stocker_nom_fichier(char* nom_fichier)
   printf("%s\n",nom_fichier);
 }
 
-/*Stocke dans la variable sequence, une séquence contenue dans un fichier au format FASTA accessible via le chemin précisé en path_input*/
-
-void extract_sequence_de_proteine(FILE* fichier, proteine sequence[])
+/*Pour extraire une sequence d'un fichier en la placant dans une variable sequence*/
+void extract_sequence(FILE* fichier, char sequence[])
 {
   int i=-1;
   char lettre_lu;
@@ -33,10 +32,9 @@ void extract_sequence_de_proteine(FILE* fichier, proteine sequence[])
     if(lettre_lu!='\n')
     {
       i++;
-      sequence[i]=*creation_proteine(lettre_lu);
+      sequence[i]=lettre_lu;
     }
   }
-  sequence[i+1]=*creation_proteine('\0');
 }
 
 /* Ecrit dans un fichier la séquence contenue dans la variable sequence
