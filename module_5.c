@@ -1,4 +1,6 @@
-#include "utils_tmp.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
 
 //stocke dans nom_fichier un fichier donné par utilisateur
 void stocker_nom_fichier(char* nom_fichier)
