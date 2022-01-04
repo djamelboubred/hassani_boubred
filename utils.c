@@ -9,8 +9,14 @@ void stocker_nom_fichier(char* nom_fichier)
   printf("Le fichier:\t%s à été charger avec succès\n",nom_fichier);
 }
 
+<<<<<<< HEAD
 /*Stocke dans la variable sequence, une séquence contenue dans un fichier au format FASTA accessible via le chemin précisé en path_input*/
 void extract_sequence(FILE* fichier, char sequence[]){
+=======
+/*Pour extraire une sequence d'un fichier en la placant dans une variable sequence*/
+void extract_sequence(FILE* fichier, char sequence[])
+{
+>>>>>>> 77258728ebd05282dd7818cd472c978d24f064d6
   int i=-1;
   char lettre_lu;
   fseek(fichier,0,SEEK_SET);
@@ -33,8 +39,11 @@ void extract_sequence(FILE* fichier, char sequence[]){
       sequence[i]=lettre_lu;
     }
   }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 77258728ebd05282dd7818cd472c978d24f064d6
 }
 
 /* Ecrit dans un fichier la séquence contenue dans la variable sequence

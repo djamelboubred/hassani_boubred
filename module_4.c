@@ -1,5 +1,12 @@
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
+
+//stocke dans nom_fichier un fichier donné par utilisateur
+void stocker_nom_fichier(char* nom_fichier)
+{
+  printf("Veuillez saisir le nom de votre fichier contenant la ou les séquences à analyser: ");
+  scanf("%s",nom_fichier);
+}
 
 /*Pour calculer la taille de la sequence present dans un fichier*/
 int calcul_taille_fichier(FILE* fichier)
@@ -20,7 +27,7 @@ int calcul_taille_fichier(FILE* fichier)
 
   while((lettre_lu=fgetc(fichier))!=EOF)
   {
-  if(lettre_lu!='\n') i++;
+    if(lettre_lu!='\n') i++;
   }
   return i;/*  */
   fseek(fichier,0,SEEK_SET);
@@ -92,18 +99,12 @@ int calcul_taille(char sequence[])
    printf("-id- %s\n",id);
  }
 
- void stocker_nom_fichier(char* nom_fichier)
- {
-   printf("Veuillez saisir le nom de votre fichier contenant la ou les séquences à analyser: ");
-   scanf("%s",nom_fichier);
-   printf("%s\n",nom_fichier);
- }
 
 int main(){
   char* nom_fichier1=malloc(sizeof(char));
   char* nom_fichier2=malloc(sizeof(char));
-  stocker_nom_fichier(nom_fichier1);
-  stocker_nom_fichier(nom_fichier2);
+  stocker_nom_fichier(fichier1);
+  stocker_nom_fichier(fichier2);
 
   FILE* fichier1=fopen(nom_fichier1,"r");
   FILE* fichier2=fopen(nom_fichier2,"r");
