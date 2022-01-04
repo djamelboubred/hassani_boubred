@@ -3,20 +3,20 @@
 #include <string.h>
 
 //utils.c 
-/*
-void get_path_from_user(char* path_input){;
-void extract_sequence(const char* path_input, char sequence[]){;
-void save_sequence(const char* path_input, char* sequence){;*/	
+
+void stocker_nom_fichier(char* nom_fichier);
+void extract_sequence(FILE* fichier, char sequence[]);
+void save_sequence(const char* path_output, char* sequence);	
 
 
-// recherche de sequence codante 
+// recherche de sequence codante toujours incorrect erreur de segmentation ligne 92
 
-char* sequence_complementaire(char sequence[], int taille);
-char* recherche_sequence_codante(/*(char* path_input)*/char sequence[],int taille);
+void sequence_complementaire(char sequence[], int taille,char sequence_comp[]);
+void recherche_sequence_codante(char sequence[],int taille);
 
 // traduction
-//char traduction(char sequence[], char sequence_AA[]){;
+//void traduction(char sequence[], int taille);
 
-// transcription
-//char transcription(char* sequence){;
+// transcription correct
+//void transcription(char* sequence, int taille);
 

@@ -1,22 +1,27 @@
 #include"utils.h"
 
-char* transcription(char* sequence){
-	// mettre extract sequence 
-	int taille = strlen(sequence);
+void transcription(char* sequence,int taille){
+	char* SequenceTranscris;
 	int i=0;
+	int j=0;
 	char* sequence_ARN = malloc(sizeof(sequence_ARN)*taille);
 	while(sequence[i]!='\0'){ 
 		if(sequence[i]=='T'){		//procéde à la transcription
-			sequence_ARN[i]='U';	
+			sequence_ARN[j]='U';	
 		}
-		else{				//sinon reprend juste le nucléotide de la séquence
-			sequence_ARN[i]=sequence[i];
+		else{		//sinon reprend juste le nucléotide de la séquence
+			sequence_ARN[j]=sequence[i];
 		}
+		if(sequence[i]=='\n'){
+		}
+		if(j%80==0){
+			j++;
+			sequence_ARN[j]='\n';
+		}
+		j++;
 		i++;
 	}
-	sequence_ARN[i]='\0';
+	sequence_ARN[j]='\0';
+	save_sequence(SequenceTranscris,sequence_ARN);
 	printf("sequence:\t5'-%s-3'\ntranscription effectué:\n=>\n=>\nsequence:\t5'%s-3'\n",sequence,sequence_ARN);
-
-	return sequence_ARN;
-
 }
