@@ -6,9 +6,11 @@ void sequence_complementaire(char sequence[], int taille, char sequence_comp[]){
 
 	int i;
 	int j=0;
-	
+
 	for(i=taille;i>=0;i--){
-			
+		if(sequence[i] == '\0'){
+			j--;	
+		}
 		if(sequence[i]=='T'){
 			sequence_comp[j]='A';
 			
@@ -42,6 +44,7 @@ void recherche_sequence_codante(char sequence[], int taille){
 	int position = k;
 	int fin = FALSE;
 	int seq_complet = TRUE;
+
 	sequence_complementaire(sequence,taille,sequence_comp);
 		while(fin == FALSE){//On procéde dans l'odre le cadre de lecture 0,+1,+2 puis on change de brin et on remodifie le cadre de lecture
 			if(cadre_lecture>3){
@@ -59,10 +62,14 @@ void recherche_sequence_codante(char sequence[], int taille){
 				debut=FALSE;
 				}
 				while((j==0)||(i<taille)){ //prend taille -4 car on exclut la lecture du caractère fin de chaîne de caractère
+				
 					if ((sequence[i]=='A') && (sequence[i+1]=='T') && (sequence[i+2]=='G')){ // si on trouve notre codon start
 						j=3;
 						k=i;	// on prend la position du codon start
 						while((i<taille)||(fin==TRUE)){
+			
+		
+	
 							if((sequence[i]=='T') && (sequence[i+1]=='A') && (sequence[i+2]=='A')){
 								fin=TRUE;
 								break;
@@ -98,6 +105,7 @@ void recherche_sequence_codante(char sequence[], int taille){
 							i= i+3;
 							j= j+3;	
 						}	
+			
 					}
 					if(seq_complet==FALSE){
 						j=0;
@@ -113,10 +121,14 @@ void recherche_sequence_codante(char sequence[], int taille){
 				debut=FALSE;
 				}
 				while((j==0)||(i<taille)){
+			
 					if ((sequence_comp[i]=='A') && (sequence_comp[i+1]=='T') && (sequence_comp[i+2]=='G')){ // si on trouve notre codon start
 						j=3;
 						k=i;
-						while((i<taille)||(fin==TRUE)){
+						while((i<taille)||(fin==TRUE)){// on cherche le codon stop après avoir trouvé un codon start
+						
+				
+					
 							if((sequence_comp[i]=='T') && (sequence_comp[i+1]=='A') && (sequence_comp[i+2]=='A')){
 								fin = TRUE;
 								break;
@@ -144,17 +156,10 @@ void recherche_sequence_codante(char sequence[], int taille){
 								seq_complet = FALSE;
 								break;
 							}
-					/*	while (((sequence_comp[i]!='T') && (sequence_comp[i+1]!='A') && (sequence_comp[i+2]!='A')) ||
-							((sequence_comp[i]!='T') && (sequence_comp[i+1]!='A') && (sequence_comp[i+2]!='G')) ||
-							((sequence_comp[i]!='T') && (sequence_comp[i+1]!='G') && (sequence_comp[i+2]!='A'))||
-							((sequence_comp[i]=='\0'))||
-							 (sequence_comp[i+1]=='\0')||
-							 (sequence_comp[i+2]=='\0'))){ 
-						*/	// on cherche le codon stop après avoir trouvé un codon start
-
 							i= i+3;
 							j= j+3;
 						}
+				
 				}
 					if(seq_complet == FALSE){
 						j=0;
@@ -166,10 +171,8 @@ void recherche_sequence_codante(char sequence[], int taille){
 			}
 			if(max<j){ // si on a une cds de taille plus importante
 				max = j;
-				max_brin = brin_sens; 
-			//	max_cadre = cadre_lecture;
+				max_brin = brin_sens;
 				position = k;
-			//	printf("max_cadre=%d, max_brin=%d\n",max_cadre,max_brin);
 			}
 			if ((sequence[i]=='\0')||(sequence[i+1]=='\0')||(sequence[i+2]=='\0')){ // dans le cas ou on est à la fin de la séquence
 				cadre_lecture = cadre_lecture + 1;
@@ -189,10 +192,16 @@ void recherche_sequence_codante(char sequence[], int taille){
 			i=0;	//on réinitialise notre compteur
 			k=position;
 			if(max_brin == TRUE){
-				while (i<max){	// j étant le nombre de nucléotides tant que notre compteur est infrieur ou égal au nombre de nucléotide max on boucle
+				while (i<max-1){	// j étant le nombre de nucléotides tant que notre compteur est infrieur ou égal au nombre de nucléotide max on boucle
+					if(sequence[k] == '\n'){
+						seq[i] = sequence[k];
+					//seq[i]=sequence[k];
+					k++;	
+					}
 					seq[i] = sequence[k];
-					i++;
 					k++;
+					i++;
+
 				}
 				seq[i]='\0';
 			}
@@ -205,10 +214,11 @@ void recherche_sequence_codante(char sequence[], int taille){
 				seq[i]='\0';
 			}
 
-			
-			printf("\n%s\n",sequence);
-			printf("\nCDS:5'%s'3\n",seq);
-			printf("comp = 5'-%s-3'\n",sequence_comp);
+			printf("test : %s\n",sequence);
+			printf("\nLa CDS se situe sur le brin: %d\t (0 si brin sens et 1 si brin complémentaire)\n",max_brin);
+			printf("\nCDS:5'-%s-3'\n",seq);
+			char path_output[10]="CDS.fasta";
+			save_sequence(path_output,seq);
 		}
 		else{
 			printf("Aucune CDS trouvée, ou le programme n'a pas fonctionné!!\n");

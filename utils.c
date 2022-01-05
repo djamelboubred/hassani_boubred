@@ -6,17 +6,14 @@ void stocker_nom_fichier(char* nom_fichier)
 {
   printf("Veuillez saisir le nom de votre fichier contenant la ou les séquences à analyser:\t ");
   scanf("%s",nom_fichier);
-  printf("Le fichier:\t%s à été charger avec succès\n",nom_fichier);
 }
 
-<<<<<<< HEAD
-/*Stocke dans la variable sequence, une séquence contenue dans un fichier au format FASTA accessible via le chemin précisé en path_input*/
-void extract_sequence(FILE* fichier, char sequence[]){
-=======
+
+
 /*Pour extraire une sequence d'un fichier en la placant dans une variable sequence*/
 void extract_sequence(FILE* fichier, char sequence[])
 {
->>>>>>> 77258728ebd05282dd7818cd472c978d24f064d6
+
   int i=-1;
   char lettre_lu;
   fseek(fichier,0,SEEK_SET);
@@ -39,31 +36,41 @@ void extract_sequence(FILE* fichier, char sequence[])
       sequence[i]=lettre_lu;
     }
   }
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 77258728ebd05282dd7818cd472c978d24f064d6
 }
 
 /* Ecrit dans un fichier la séquence contenue dans la variable sequence
 en renvoyant à la ligne tous les 80 caractères, comme dans le format FASTA*/
 	void save_sequence(const char* path_output, char sequence[]){
-		FILE* fsequence=fopen("path_output","w");
+		FILE* fsequence=fopen(path_output,"w");
 		if (!fsequence){
 			fprintf(stderr, "L'ouverture a échoué.\tvérifier les points suivant:\n=>le nom du fichier saisis\n=>le nom du fichier n'est pas trop grand >20 char\n=>le fichier est bien dans le répertoire\n");
 			EXIT_FAILURE;
 		}
 		int i=0;
+		int compteur=1;
 		while(sequence[i]!='\0'){
-			for(i=0;i<80;i++){
+			if(compteur == 80){
+				fprintf(fsequence, "\n");
+				compteur =0;
+			}
 			fprintf(fsequence,"%c",sequence[i]);
+			i++;
+			compteur++;
+		}
+			
+			
+			/*	for(j=i;j<i+80;j++){
+				fprintf(fsequence,"%c",sequence[j]);
+				if(sequence[j] =='\0'){
+					fprintf(fsequence,%c,sequence[i]);
+					j=j-1;
+					break;
 			}
 			fprintf(fsequence,"\n");
-			i++;
-		}
-		fprintf(fsequence,"%c",sequence[i]);//ecrit la fin de chaîne de caractère
+			i=j+1;
+		}*/
+	
 		fclose(fsequence);
 		EXIT_SUCCESS;
+		printf("La séquence à été sauvegarder avec succès dans le fichier : %s\n", path_output);	
 	}
-

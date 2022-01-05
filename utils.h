@@ -9,14 +9,13 @@ void extract_sequence(FILE* fichier, char sequence[]);
 void save_sequence(const char* path_output, char* sequence);	
 
 
-// recherche de sequence codante toujours incorrect erreur de segmentation ligne 92
-
+// recherche de sequence codante
 void sequence_complementaire(char sequence[], int taille,char sequence_comp[]);
 void recherche_sequence_codante(char sequence[],int taille);
 
 // traduction
 //void traduction(char sequence[], int taille);
 
-// transcription correct
-//void transcription(char* sequence, int taille);
+// transcription
+void transcription(char* sequence, int taille);
 

@@ -1,9 +1,10 @@
 #include"utils.h"
 
 void transcription(char* sequence,int taille){
-	char* SequenceTranscris;
+	char path_output[20]="SequenceARN.fasta";
 	int i=0;
 	int j=0;
+	
 	char* sequence_ARN = malloc(sizeof(sequence_ARN)*taille);
 	while(sequence[i]!='\0'){ 
 		if(sequence[i]=='T'){		//procéde à la transcription
@@ -22,6 +23,6 @@ void transcription(char* sequence,int taille){
 		i++;
 	}
 	sequence_ARN[j]='\0';
-	save_sequence(SequenceTranscris,sequence_ARN);
-	printf("sequence:\t5'-%s-3'\ntranscription effectué:\n=>\n=>\nsequence:\t5'%s-3'\n",sequence,sequence_ARN);
+	save_sequence(path_output,sequence_ARN);
+	printf("\ntranscription effectué:\n=>\nsequence:\t5'%s-3'\n",sequence_ARN);
 }
