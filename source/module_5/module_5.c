@@ -1,4 +1,4 @@
-#include "utils.h"
+#include "module_5.h"
 
 
 proteine* creation_proteine(char lettre)
@@ -126,4 +126,10 @@ int module_5(){
   fclose(fichier1);
   fclose(fichier2);
   return 0;
+}
+
+
+
+int main(){
+  module_5();
 }

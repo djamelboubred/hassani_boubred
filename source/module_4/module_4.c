@@ -1,4 +1,4 @@
-#include "utils.h"
+#include "module_4.h"
 
 /*Pour calculer la taille d'une sequence ( pas dans un fichier mais dans un tableau)*/
 int calcul_taille(char sequence[])
@@ -73,4 +73,9 @@ int module_4(){
   fclose(fichier1);
   fclose(fichier2);
   return 0;
+}
+
+
+int main(){
+  module_4();
 }
