@@ -7,7 +7,7 @@ void traduction(char sequence[],int taille){
 	int i=0;
 	int j=0;
 
-	while((sequence[i]!='\0')||(sequence_AA[j]=='\0')){
+	while((sequence[i]!='\0')||(i<taille)||(sequence_AA[j-1]=='\0')){// scrute la sequence tant qu'on n'est pas à la fin 
 		if((sequence[i]=='A')&&(sequence[i+1]=='U')&&(sequence[i+2]=='G')){
 			sequence_AA[j] = 'M';
 		}
@@ -47,9 +47,10 @@ void traduction(char sequence[],int taille){
 		if((sequence[i]=='U')&&(sequence[i+1]=='A')&&((sequence[i+2]=='U')||(sequence[i+2]=='C'))){
 			sequence_AA[j]='Y';
 		}
+		//codon stop on met un caractère de fin de chaîne de caractères
 		if(((sequence[i]=='U')&&(sequence[i+1]=='A')&&((sequence[i+2]=='A')||(sequence[i+2]=='G')))||((sequence[i]=='U')&&(sequence[i+1]=='G')&&(sequence[i+2]=='A'))){
-			sequence_AA[j]='*';
-			sequence_AA[j+1]='\0';
+			//sequence_AA[j]='*';
+			sequence_AA[j]='\0';
 		}
 		if((sequence[i]=='C')&&(sequence[i+1]=='A')&&((sequence[i+2]=='U')||(sequence[i+2]=='C'))){
 			sequence_AA[j]='H';
@@ -79,4 +80,10 @@ void traduction(char sequence[],int taille){
 		j++;
 	}
 	printf("sequence traduite :\t5'-%s-3'\n",sequence_AA);
+/*	char path_output[17] = "sequenceAA.fasta";
+        save_sequence(path_output,sequence_AA);
+*/
+	// erreur lors du remplissage du fichier sequenceAA.fasta, cette erreur est visible uniquement lors de l'appelle de la fonction save_sequence(path_output,sequence_AA); du module 3
+	// erreur est : malloc(): corrupted top size
+
 }

@@ -1,7 +1,6 @@
 #include"utils.h"
 int main(){
-	//char sequence[] ={'A','G','T','C','T','G','A','C','C','C','A','T','G','T','A','C','A','G','T','T','A','A','C','A','\0'}; 
-	printf(" ");//régle soucis affichage
+//module 1
 	char* nom_fichier1= malloc(sizeof(char));
 	stocker_nom_fichier(nom_fichier1);
 	
@@ -20,7 +19,7 @@ int main(){
 	fclose(fichier1);
 
 	recherche_sequence_codante(sequence,taille_fichier1);	
-	
+//module 2	
 	char* nom_fichier2 = malloc(sizeof(char));
 	stocker_nom_fichier(nom_fichier2);
 	FILE* fichier2 = fopen(nom_fichier2,"r");
@@ -35,10 +34,21 @@ int main(){
 	char* cds = malloc(sizeof(char)*taille_fichier2);	
 	extract_sequence(fichier2,cds);
 	transcription(cds,taille_fichier2);
-//	printf("A ton avancé après la onction transcription\n");
-	//	traduction(sequence, taille);
-
-//	printf("%s\n",sequence_AA);
-
+//module 3	
+	char* nom_fichier3 = malloc(sizeof(char));
+        stocker_nom_fichier(nom_fichier3);
+        FILE* fichier3 = fopen(nom_fichier3,"r");
+        if(!fichier3){
+                fprintf(stderr, "L'ouverture à échoué.\n");
+                return EXIT_FAILURE;
+        }
+        else{
+                printf("Le fichier:\t%s à été charger avec succès\n",nom_fichier3);
+        }
+        int taille_fichier3 = calcul_taille_fichier(fichier3);
+        char* sequence_ARN = malloc(sizeof(char)*taille_fichier3);
+        extract_sequence(fichier3,sequence_ARN);
+        traduction(sequence_ARN,taille_fichier3);
+//module 4
 }
 

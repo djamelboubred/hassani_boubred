@@ -15,7 +15,7 @@ void sequence_complementaire(char sequence[], int taille,char sequence_comp[]);
 void recherche_sequence_codante(char sequence[],int taille);
 int recherche_max_cds(char sequence[], int* position, int i);
 // traduction
-//void traduction(char sequence[], int taille);
+void traduction(char sequence[], int taille);
 
 // transcription
 void transcription(char* sequence, int taille);
