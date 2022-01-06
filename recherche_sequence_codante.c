@@ -58,6 +58,31 @@ int recherche_max_cds(char sequence[], int* position, int cadre){
 	return maximum;
 }
 
+
+int calcul_taille_fichier(FILE* fichier)
+{
+  int i=0;
+  char lettre_lu;
+  if(fgetc(fichier)=='>')
+  {
+    while(fgetc(fichier)!='\n')
+    {
+
+    }
+  }
+  else
+  {
+    fseek(fichier,0,SEEK_SET);
+  }
+
+  while((lettre_lu=fgetc(fichier))!=EOF)
+  {
+  if(lettre_lu!='\n') i++;
+  }
+  return i;/*  */
+  fseek(fichier,0,SEEK_SET);
+}
+
 void sequence_complementaire(char sequence[], int taille, char sequence_comp[]){ //prend ue séquence et la taille de la séquence en argument
 
 	int i;
@@ -65,11 +90,11 @@ void sequence_complementaire(char sequence[], int taille, char sequence_comp[]){
 
 	for(i=taille;i>=0;i--){
 		if(sequence[i] == '\0'){
-			j--;	
+			j--;
 		}
 		if(sequence[i]=='T'){
 			sequence_comp[j]='A';
-			
+
 		}
 		if(sequence[i] == 'A'){
 			sequence_comp[j] ='T';
@@ -81,20 +106,23 @@ void sequence_complementaire(char sequence[], int taille, char sequence_comp[]){
 			sequence_comp[j]='G';
 		}
 		j++;
-	}	
-		sequence_comp[j] ='\0';	
+	}
+		sequence_comp[j] ='\0';
 }
 
 void recherche_sequence_codante(char sequence[], int taille){
 
 	char* cds  = malloc(sizeof(char)*taille);//  La cds à remplir
 	char* sequence_comp = malloc(sizeof(char)*taille);
+
 	int k =0; // position du premier nucléotide afin de pouvoir initier l'écriture de notre cds la plus grande lors de la fin du traitement de notre séquence  
+
 	int j = 0; //compteur nombres de nt
 	int i =0; // compteur en respectant le cadre de lecture et la lecture de codon(+3) à chaque tour
 	int max =0; // valeur max de la taille de la CDS
 	int brin_sens = TRUE; //Valeur 0 si on est dans le cas du brin sens et 1 si brin anti-sens
 	int cadre_lecture= 0; // Indique à l'utilisateur dans qu'elle cadre de lecture se trouve la  plus grande CDS
+
 	int max_brin=TRUE;	//permet de connaître le brin pris en compte pour notre cds la plus grane 
 	int position = 0; //position définitif de la plus grande cds
 	int cadre_max;
@@ -155,10 +183,12 @@ void recherche_sequence_codante(char sequence[], int taille){
                         max_brin = brin_sens;
                 }
 	}	
+
 		if(max!=0){// on verifie que notre fonction fonctionne en ayant trouvé au moins une CDS
 			i=0;	//on réinitialise notre compteur
 			int x = position;
 			if(max_brin == TRUE){
+
 				while (i<max){	// j étant le nombre de nucléotides tant que notre compteur est infrieur ou égal au nombre de nucléotide max on boucle
 					if(sequence[x] == '\n'){
 						cds[i] = sequence[x];
@@ -191,5 +221,5 @@ void recherche_sequence_codante(char sequence[], int taille){
 		}
 		else{
 			printf("Aucune CDS trouvée, ou le programme n'a pas fonctionné!!\n");
-		}	
+		}
 }
