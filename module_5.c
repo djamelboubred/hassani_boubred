@@ -1,10 +1,5 @@
 #include "utils.h"
 
-/*typedef struct proteine
-{
-  char id;
-  int polarite;
-}proteine;*/
 
 proteine* creation_proteine(char lettre)
 {
