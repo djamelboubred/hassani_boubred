@@ -1,25 +1,32 @@
-# hassani_boubred
-project c collaboration between Hassani and boubred
+# Project Informatique Paris Saclay
 
-FONCTIONS PRINCIPALES PAR MODULE:
+Ce projet contient le code source du logiciel d'analyse de séquences. 
+Ce logiciel est issu de la collaboration entre Djamel Boubred et Maïsen HASSANI.
 
-## 1. Recherche de la séquence codante de taille maximale
-``char* Recherche_sequence_codante( Char* sequence)`` renvoie char* sequence (ADN)
+Il contient les éléments suivants :
+- ``source/`` : Contient le code source C
+- ``results/`` : Contient les fichiers produits par le code
+- ``Makefile`` : Décrit les raccourcis de commande pour compiler le code
+- README.md
+- .gitignore
 
-## 2. Transcription d’une séquence ADN en séquence ARN
-``char* transcription( char* sequence)`` renvoie char* sequence (ARN)
 
-## 3. Traduction d’une séquence codante en séquence protéique 
-``char* traduction( char sequence (ARN))`` renvoie char* sequence (proteine)
+## Fonctionnalités
 
-## 4. Calcul du score d’identité entre deux séquences
-``float Calcul_score_identite( FILE* fichier1, FILE* fichier 2) `` ( avec fichier1 et fichier2 contenant sequences) renvoie un nombre (=score identite)
+Il permet les fonctionnalités suivantes
 
-## 5. Calcul du score de similarité de polarité entre deux séquences protéiques
-``int Calcul_score_similarite( FILE* fichier1, FILE* fichier 2)`` renvoie un nombre d'AA similaires par type (=score similarite de polarite)
+1. Recherche de la séquence codante de taille maximale
+2. Transcription d’une séquence ADN en séquence ARN
+3. Traduction d’une séquence codante en séquence protéique 
+4. Calcul du score d’identité entre deux séquences
+5. Calcul du score de similarité de polarité entre deux séquences protéiques
+6. Recherche d’une séquence consensus à partir d’un alignement multiple 
+7. Recherche de la plus grande sous-chaîne de polarité commune à 2 séquences protéiques
 
-## 6.Recherche d’une séquence consensus à partir d’un alignement multiple  
-``char* Recherche_sequence_consensus(FILE* fichier)`` renvoie un alignement multiple annoté
 
-## 7. Recherche de la plus grande sous-chaîne de polarité commune à 2 séquences protéiques
-on verra à la fin...
+## Exécution en local
+
+Pour exécuter le logiciel, taper la commande suivante :
+```make run-project```
+
+Les 7 modules s'exécuteront les uns à la suite des autres.
