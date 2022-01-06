@@ -1,5 +1,6 @@
 #include "utils.h"
 
+
 // fonction utilitaire (mis dans utils.c) permet de demander à l'utilisateur un nom de fichier pour le stocker dans une variable
 void stocker_nom_fichier(char* nom_fichier)
 {
@@ -8,30 +9,6 @@ void stocker_nom_fichier(char* nom_fichier)
 }
 
 
-/*Pour calculer la taille de la sequence present dans un fichier*/
-int calcul_taille_fichier(FILE* fichier)
-{
-  int i=0;
-  char lettre_lu;
-  if(fgetc(fichier)=='>')
-  {
-    while(fgetc(fichier)!='\n')
-    {
-
-    }
-  }
-  else
-  {
-    fseek(fichier,0,SEEK_SET);
-  }
-
-  while((lettre_lu=fgetc(fichier))!=EOF)
-  {
-    if(lettre_lu!='\n') i++;
-  }
-  return i;
-  fseek(fichier,0,SEEK_SET);
-}
 
 /*Pour extraire une sequence d'un fichier en la placant dans une variable sequence*/
 void extract_sequence(FILE* fichier, char sequence[])
@@ -83,9 +60,10 @@ en renvoyant à la ligne tous les 80 caractères, comme dans le format FASTA*/
 
 		fclose(fsequence);
 		EXIT_SUCCESS;
-		printf("La séquence a  été sauvegardé avec succès dans le fichier : %s\n", path_output);	
+		printf("La séquence a  été sauvegardé avec succès dans le fichier : %s\n", path_output);
 	}
-  
+
+
   /*Pour calculer la taille de la sequence present dans un fichier*/
   int calcul_taille_fichier(FILE* fichier)
   {
@@ -107,6 +85,6 @@ en renvoyant à la ligne tous les 80 caractères, comme dans le format FASTA*/
     {
       if(lettre_lu!='\n') i++;
     }
-    return i;/*  */
+    return i;
     fseek(fichier,0,SEEK_SET);
   }

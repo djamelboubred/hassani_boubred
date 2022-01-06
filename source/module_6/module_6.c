@@ -1,4 +1,4 @@
-#include "utils.h"
+#include "module_6.h"
 
  /* permet de verifier que le fichier ne contient rien d’autre que des séquences d'acide nucléiques */
 bool verification_sequence_ADN(FILE* fichier)
@@ -159,4 +159,11 @@ int module_6()
 
   afficher_sequence_consensus(tableau_sequence,taille_sequence,nb_sequence);
   return 0;
+}
+
+
+
+
+int main(){
+  module_6();
 }
