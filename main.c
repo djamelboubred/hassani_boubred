@@ -1,31 +1,29 @@
 #include"utils.h"
 int main(){
-	//char sequence[] ={'A','G','T','C','T','G','A','C','C','C','A','T','G','T','A','C','A','G','T','T','A','A','C','A','\0'}; 
-	printf(" ");
-	char* nom_fichier= malloc(sizeof(char));
-	char* sequence= malloc(sizeof(char));// taille maximum qui seras réduit plus tard	
-	stocker_nom_fichier(nom_fichier);
-	
-	FILE* fichier = NULL;
-		fichier = fopen(nom_fichier,"r");
-	if(!fichier){
+	//char sequence[] ={'A','G','T','C','T','G','A','C','C','C','A','T','G','T','A','C','A','G','T','T','A','A','C','A','\0'};
+	printf(" ");//régle soucis affichage
+	char* nom_fichier1= malloc(sizeof(char));
+	stocker_nom_fichier(nom_fichier1);
+
+	FILE* fichier1 = fopen(nom_fichier1,"r");
+	if(!fichier1){
 		fprintf(stderr, "L'ouverture à échoué.\n");
 		return EXIT_FAILURE;
 	}
 	else{
-		printf("Le fichier:\t%s à été charger avec succès\n",nom_fichier);
+		printf("Le fichier:\t%s à été charger avec succès\n",nom_fichier1);
 	}
-	extract_sequence(fichier, sequence);
-	int taille = strlen(sequence);
-	recherche_sequence_codante(sequence,taille);
-	fclose(fichier);	
+	int taille_fichier1= calcul_taille_fichier(fichier1);
+	char* sequence= malloc(sizeof(char)*taille_fichier1);// taille maximum qui seras réduit plus tard
+	extract_sequence(fichier1, sequence);
+	//printf("test bis");
+	fclose(fichier1);
 
-	char* cds = malloc(sizeof(char)*taille);	
+	recherche_sequence_codante(sequence,taille_fichier1);
+
 	char* nom_fichier2 = malloc(sizeof(char));
-	
 	stocker_nom_fichier(nom_fichier2);
-	FILE* fichier2 = NULL;
-		fichier2 = fopen(nom_fichier2,"r");
+	FILE* fichier2 = fopen(nom_fichier2,"r");
 	if(!fichier2){
 		fprintf(stderr, "L'ouverture à échoué.\n");
 		return EXIT_FAILURE;
@@ -33,13 +31,13 @@ int main(){
 	else{
 		printf("Le fichier:\t%s à été charger avec succès\n",nom_fichier2);
 	}
+	int taille_fichier2 = calcul_taille_fichier(fichier2);
+	char* cds = malloc(sizeof(char)*taille_fichier2);
 	extract_sequence(fichier2,cds);
-	taille = strlen(cds); // on modifie la taille réservé pour les chaîne de caractère en prenant celle de la cds et non de la séquence de départ
-	transcription(cds,taille);
+	transcription(cds,taille_fichier2);
 //	printf("A ton avancé après la onction transcription\n");
 	//	traduction(sequence, taille);
 
 //	printf("%s\n",sequence_AA);
 
 }
-

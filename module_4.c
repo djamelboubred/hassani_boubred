@@ -1,64 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
-
-//stocke dans nom_fichier un fichier donné par utilisateur
-void stocker_nom_fichier(char* nom_fichier)
-{
-  printf("Veuillez saisir le nom de votre fichier contenant la ou les séquences à analyser: ");
-  scanf("%s",nom_fichier);
-}
-
-/*Pour calculer la taille de la sequence present dans un fichier*/
-int calcul_taille_fichier(FILE* fichier)
-{
-  int i=0;
-  char lettre_lu;
-  if(fgetc(fichier)=='>')
-  {
-    while(fgetc(fichier)!='\n')
-    {
-
-    }
-  }
-  else
-  {
-    fseek(fichier,0,SEEK_SET);
-  }
-
-  while((lettre_lu=fgetc(fichier))!=EOF)
-  {
-    if(lettre_lu!='\n') i++;
-  }
-  return i;/*  */
-  fseek(fichier,0,SEEK_SET);
-}
-
-/*Pour extraire une sequence d'un fichier en la placant dans une variable sequence*/
-void extract_sequence(FILE* fichier, char sequence[])
-{
-  int i=-1;
-  char lettre_lu;
-  fseek(fichier,0,SEEK_SET);
-  if(fgetc(fichier)=='>')
-  {
-    while(fgetc(fichier)!='\n') /*On avance le curseur jusqu'au premier saut de ligne*/
-    {
-
-    }
-  }
-  else
-  {
-    fseek(fichier,0,SEEK_SET);
-  }
-  while((lettre_lu=fgetc(fichier))!=EOF)
-  {
-    if(lettre_lu!='\n')
-    {
-      i++;
-      sequence[i]=lettre_lu;
-    }
-  }
-}
+#include "utils.h"
 
 /*Pour calculer la taille d'une sequence ( pas dans un fichier mais dans un tableau)*/
 int calcul_taille(char sequence[])
@@ -69,7 +9,7 @@ int calcul_taille(char sequence[])
 }
 
 /*Fonction principale, pour calculer le score d'identite*/
- int Calcul_element_identique(char sequence1[],char sequence2[])
+ void Calcul_element_identique(char sequence1[],char sequence2[])
  {
    int i=0;/*compteur séquence 1*/
    float nb_identique=0;
@@ -100,11 +40,13 @@ int calcul_taille(char sequence[])
  }
 
 
-int main(){
+int module_4(){
+  printf("\n MODULE 4: Calcul de score d'identite entre deux sequences.\n");
+  printf("L'ordinateur va vous demander à deux reprises de taper les 2 noms de fichiers contenant vos sequences\n");
   char* nom_fichier1=malloc(sizeof(char));
   char* nom_fichier2=malloc(sizeof(char));
-  stocker_nom_fichier(fichier1);
-  stocker_nom_fichier(fichier2);
+  stocker_nom_fichier(nom_fichier1);
+  stocker_nom_fichier(nom_fichier2);
 
   FILE* fichier1=fopen(nom_fichier1,"r");
   FILE* fichier2=fopen(nom_fichier2,"r");
@@ -118,12 +60,10 @@ int main(){
   int taille2= calcul_taille_fichier(fichier2);
   if(taille1!=taille2)
   {
-    printf("Erreur : Comparaison de séquences de tailles differentes\n");
-    exit(1);
+    printf("Attention : Comparaison de séquences de tailles differentes\n");
   }
-
-  char sequence1[taille1];
-  char sequence2[taille2];
+  char* sequence1= malloc(sizeof(char)*taille1);
+  char* sequence2= malloc(sizeof(char)*taille2);
 
   extract_sequence(fichier1,sequence1);
 
@@ -132,4 +72,5 @@ int main(){
   Calcul_element_identique(sequence1,sequence2);
   fclose(fichier1);
   fclose(fichier2);
+  return 0;
 }

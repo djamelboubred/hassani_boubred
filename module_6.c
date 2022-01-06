@@ -1,13 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-
-// fonction utilitaire (mis dans utils.c) permet de demander à l'utilisateur un nom de fichier pour le stocker dans une variable
-void stocker_nom_fichier(char* nom_fichier)
-{
-  printf("Veuillez saisir le nom de votre fichier contenant la ou les séquences à analyser: ");
-  scanf("%s",nom_fichier);
-}
+#include "utils.h"
 
  /* permet de verifier que le fichier ne contient rien d’autre que des séquences d'acide nucléiques */
 bool verification_sequence_ADN(FILE* fichier)
@@ -143,25 +134,29 @@ int calcul_nb_sequences(FILE* fichier)
   return nb_sequence;
 }
 
-int main()
+int module_6()
 {
-  /*char* nom_fichier1=malloc(sizeof(char));
-  stocker_nom_fichier(nom_fichier1);*/
-  //FILE* fichier1=fopen(nom_fichier1,"r");
-  char tableau_sequence[300010];
-  int taille_sequence=0;
-  int nb_sequence=0;
-  FILE* fichier1=fopen("fichier1.txt","r");
-  if (!fichier1)
+  printf("\n MODULE 6: Recherche d’une séquence consensus à partir d’un alignement multiple \n");
+  printf("L'ordinateur va vous demander à une seule reprise de taper le nom du fichier contenant vos sequences\n");
+  char* nom_fichier=malloc(sizeof(char));
+  stocker_nom_fichier(nom_fichier);
+  int taille_sequence=0;//taille de chaque sequence (taille d'une ligne dans un fichier)
+  int nb_sequence=0;//nombre de ligne dans un fichier
+  FILE* fichier=fopen(nom_fichier,"r");
+  if (!fichier)
   {
       fprintf(stderr, "L'ouverture a échoué");
       return EXIT_FAILURE;
   }
-  verification_sequence_ADN(fichier1);//on verifie que le fichier contient sequence ADN seulement
-  calcul_nb_sequences(fichier1);// on verifie que toutes les sequences ont la meme taille
-  taille_sequence=calcul_taille_sequence(fichier1);
-  nb_sequence=calcul_nb_sequences(fichier1);
-  extract_tableau_sequence(fichier1,tableau_sequence);
-  printf("%s\n",tableau_sequence);
+  int taille_tableau_sequence=calcul_taille_fichier(fichier);//on calcule la taille total du fichier pour creer ensuite un tableau de cette taille
+  char tableau_sequence[taille_tableau_sequence];// tableau_sequences comportera toutes les sequences presents dans le fichier donné par l'utilisateur
+
+  verification_sequence_ADN(fichier);//on verifie que le fichier contient sequence ADN seulement
+  calcul_nb_sequences(fichier);// on verifie que toutes les sequences ont la meme taille
+  taille_sequence=calcul_taille_sequence(fichier);
+  nb_sequence=calcul_nb_sequences(fichier);
+  extract_tableau_sequence(fichier,tableau_sequence);
+
   afficher_sequence_consensus(tableau_sequence,taille_sequence,nb_sequence);
+  return 0;
 }
