@@ -24,11 +24,11 @@ Il permet les fonctionnalités suivantes
 7. Recherche de la plus grande sous-chaîne de polarité commune à 2 séquences protéiques
 
 
-## Exécution en local
+## Exécution 
 
 Pour exécuter le logiciel, taper la commande suivante :
 ```(bash)
-make run-project
+make run-all
 ```
 
 Les 7 modules s'exécuteront les uns à la suite des autres.
