@@ -39,7 +39,6 @@ Pour executer un module particulier, tapez la commande suivante:
 make run-m<numero module>
 ```
 
-Pour tester les modules nous avons mis à disposition des fichiers exemples dans le dossiers ressources. Pour les exploiter, il faudra indiquer le chemin utilisé lorsque l'ordinateur le demmandera.
+Pour tester les modules nous avons mis à disposition des fichiers exemples dans le dossiers ressources. Pour les exploiter, il faudra indiquer le chemin utilisé lorsque l'ordinateur le demandera.
 Par exemple, pour analyser la sequence du fichier test du module 1, tapez:
-
-ressources/module4.1.txt
+`` ressources/module1.txt``
