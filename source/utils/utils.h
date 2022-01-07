@@ -2,25 +2,30 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#define TRUE 0
+#define FALSE 1
 
 //utils.c
 
 void stocker_nom_fichier(char* nom_fichier);
 void extract_sequence(FILE* fichier, char sequence[]);
 void save_sequence(const char* path_output, char* sequence);
-
 int calcul_taille_fichier(FILE* fichier);
 
 
-// recherche de sequence codante
+//MODULE 1
 void sequence_complementaire(char sequence[], int taille,char sequence_comp[]);
 void recherche_sequence_codante(char sequence[],int taille);
 int recherche_max_cds(char sequence[], int* position, int i);
-// traduction
-void traduction(char sequence[], int taille);
+int module_1();
 
-// transcription
+//MODULE 2
+void traduction(char sequence[], int taille);
+int module_2();
+
+//MODULE 3
 void transcription(char* sequence, int taille);
+int module_3();
 
 //MODULE 4
 int calcul_taille(char sequence[]);

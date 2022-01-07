@@ -1,16 +1,14 @@
-#include "utils.h"
-#define TRUE 0
-#define FALSE 1
+#include "module_1.h"
 int recherche_max_cds(char sequence[], int* position, int cadre){
 	int j=0; // compteur du nombre de nt
 	int k = 0; // position initial du premier nt de la cds
 	int maximum =0;   // le nombre le plus important de nt dans une cds
 	int taille = strlen(sequence);
 	int fin = FALSE;
-	int i = cadre;	
+	int i = cadre;
 	int seq_complet = TRUE;
-	while((j==0)||(i<taille-2)){ 	
-        	if ((sequence[i]=='A') && (sequence[i+1]=='T') && (sequence[i+2]=='G')){ // si on trouve notre codon start 
+	while((j==0)||(i<taille-2)){
+        	if ((sequence[i]=='A') && (sequence[i+1]=='T') && (sequence[i+2]=='G')){ // si on trouve notre codon start
 			j=3;
                         k=i;    // on prend la position du codon start
                         while((i<taille-2)||(fin!=TRUE)){
@@ -40,9 +38,9 @@ int recherche_max_cds(char sequence[], int* position, int cadre){
 	 				fin=TRUE;
                                         seq_complet = FALSE;
                                         break;
-                                }  
+                                }
 				i= i+3;
-   				j= j+3; 
+   				j= j+3;
 			}
 			if(seq_complet==FALSE){
                         	j=0;
@@ -58,30 +56,6 @@ int recherche_max_cds(char sequence[], int* position, int cadre){
 	return maximum;
 }
 
-
-int calcul_taille_fichier(FILE* fichier)
-{
-  int i=0;
-  char lettre_lu;
-  if(fgetc(fichier)=='>')
-  {
-    while(fgetc(fichier)!='\n')
-    {
-
-    }
-  }
-  else
-  {
-    fseek(fichier,0,SEEK_SET);
-  }
-
-  while((lettre_lu=fgetc(fichier))!=EOF)
-  {
-  if(lettre_lu!='\n') i++;
-  }
-  return i;/*  */
-  fseek(fichier,0,SEEK_SET);
-}
 
 void sequence_complementaire(char sequence[], int taille, char sequence_comp[]){ //prend ue séquence et la taille de la séquence en argument
 
@@ -115,7 +89,7 @@ void recherche_sequence_codante(char sequence[], int taille){
 	char* cds  = malloc(sizeof(char)*taille);//  La cds à remplir
 	char* sequence_comp = malloc(sizeof(char)*taille);
 
-	int k =0; // position du premier nucléotide afin de pouvoir initier l'écriture de notre cds la plus grande lors de la fin du traitement de notre séquence  
+	int k =0; // position du premier nucléotide afin de pouvoir initier l'écriture de notre cds la plus grande lors de la fin du traitement de notre séquence
 
 	int j = 0; //compteur nombres de nt
 	int i =0; // compteur en respectant le cadre de lecture et la lecture de codon(+3) à chaque tour
@@ -123,7 +97,7 @@ void recherche_sequence_codante(char sequence[], int taille){
 	int brin_sens = TRUE; //Valeur 0 si on est dans le cas du brin sens et 1 si brin anti-sens
 	int cadre_lecture= 0; // Indique à l'utilisateur dans qu'elle cadre de lecture se trouve la  plus grande CDS
 
-	int max_brin=TRUE;	//permet de connaître le brin pris en compte pour notre cds la plus grane 
+	int max_brin=TRUE;	//permet de connaître le brin pris en compte pour notre cds la plus grane
 	int position = 0; //position définitif de la plus grande cds
 	int cadre_max;
 
@@ -135,7 +109,7 @@ void recherche_sequence_codante(char sequence[], int taille){
 		if(max<j){
 			max=j;
 			position =k;
-			cadre_max =cadre_lecture;	
+			cadre_max =cadre_lecture;
 			max_brin = brin_sens;
 		}
 		cadre_lecture++;
@@ -182,7 +156,7 @@ void recherche_sequence_codante(char sequence[], int taille){
                         cadre_max = cadre_lecture;
                         max_brin = brin_sens;
                 }
-	}	
+	}
 
 		if(max!=0){// on verifie que notre fonction fonctionne en ayant trouvé au moins une CDS
 			i=0;	//on réinitialise notre compteur
@@ -192,7 +166,7 @@ void recherche_sequence_codante(char sequence[], int taille){
 				while (i<max){	// j étant le nombre de nucléotides tant que notre compteur est infrieur ou égal au nombre de nucléotide max on boucle
 					if(sequence[x] == '\n'){
 						cds[i] = sequence[x];
-						x++;	
+						x++;
 					}
 					cds[i] = sequence[x];
 					x++;
@@ -222,4 +196,33 @@ void recherche_sequence_codante(char sequence[], int taille){
 		else{
 			printf("Aucune CDS trouvée, ou le programme n'a pas fonctionné!!\n");
 		}
+}
+
+int module_1(){
+		printf("\n MODULE 1: Recherche de la séquence codante de taille maximale .\n");
+		char* nom_fichier1= malloc(sizeof(char));
+		stocker_nom_fichier(nom_fichier1);
+
+		FILE* fichier1 = fopen(nom_fichier1,"r");
+		if(!fichier1){
+			fprintf(stderr, "L'ouverture à échoué.\n");
+			return EXIT_FAILURE;
+		}
+		else{
+			printf("Le fichier:\t%s à été charger avec succès\n",nom_fichier1);
+		}
+		int taille_fichier1= calcul_taille_fichier(fichier1);
+
+		char* sequence= malloc(sizeof(char)*taille_fichier1);// taille maximum qui seras réduit plus tard
+		extract_sequence(fichier1, sequence);
+		//printf("test bis");
+		fclose(fichier1);
+
+		recherche_sequence_codante(sequence,taille_fichier1);
+		return 0;
+}
+
+
+int main(){
+	module_1();
 }

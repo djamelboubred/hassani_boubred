@@ -96,7 +96,7 @@ void Calcul_polarite(proteine sequence1[],proteine sequence2[])
 int module_5(){
 
   printf("\n MODULE 5: Calcul du score de similarité de polarité entre deux séquences protéiques \n");
-  printf("L'ordinateur va vous demander à deux reprises de taper les 2 noms de fichiers contenant vos sequences\n");
+  printf("L'ordinateur va vous demander à deux reprises de taper les 2 chemins menant à vos fichiers contenant vos sequences\n");
   char* nom_fichier1=malloc(sizeof(char));
   char* nom_fichier2=malloc(sizeof(char));
   stocker_nom_fichier(nom_fichier1);

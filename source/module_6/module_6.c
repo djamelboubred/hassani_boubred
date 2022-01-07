@@ -119,6 +119,7 @@ void extract_tableau_sequence(FILE* fichier, char sequence[])
     nb_A=0; nb_T=0; nb_C=0; nb_G=0; nb_gap=0; score_identite=0;//
   }
   printf("%s\n",sequence_consensus);
+  return 0;
 }
 
 //permet de calculer nombre de ligne dans un fichier =nbr de sequence
@@ -137,7 +138,7 @@ int calcul_nb_sequences(FILE* fichier)
 int module_6()
 {
   printf("\n MODULE 6: Recherche d’une séquence consensus à partir d’un alignement multiple \n");
-  printf("L'ordinateur va vous demander à une seule reprise de taper le nom du fichier contenant vos sequences\n");
+  printf("L'ordinateur va vous demander à une seule reprise de taper le chemin menant à votre fichier contenant vos sequences\n");
   char* nom_fichier=malloc(sizeof(char));
   stocker_nom_fichier(nom_fichier);
   int taille_sequence=0;//taille de chaque sequence (taille d'une ligne dans un fichier)
@@ -160,9 +161,6 @@ int module_6()
   afficher_sequence_consensus(tableau_sequence,taille_sequence,nb_sequence);
   return 0;
 }
-
-
-
 
 int main(){
   module_6();

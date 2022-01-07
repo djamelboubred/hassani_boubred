@@ -4,7 +4,7 @@
 // fonction utilitaire (mis dans utils.c) permet de demander à l'utilisateur un nom de fichier pour le stocker dans une variable
 void stocker_nom_fichier(char* nom_fichier)
 {
-  printf("\nVeuillez saisir le nom de votre fichier contenant la ou les séquences à analyser: ");
+  printf("\nVeuillez saisir le chemin vers votre fichier contenant la ou les séquences à analyser: ");
   scanf("%s",nom_fichier);
 }
 
