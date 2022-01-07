@@ -7,7 +7,7 @@ void traduction(char sequence[],int taille){
 	int i=0;
 	int j=0;
 
-	while((sequence[i]!='\0')||(i<taille)||(sequence_AA[j-1]=='\0')){// scrute la sequence tant qu'on n'est pas à la fin
+	while((sequence[i]!='\0')||(i<taille)||(sequence_AA[j-1]=='\0')){// scrute la sequence tant qu'on n'est pas à la fin ou qu'on n'a pas trouvé de codon stop
 		if((sequence[i]=='A')&&(sequence[i+1]=='U')&&(sequence[i+2]=='G')){
 			sequence_AA[j] = 'M';
 		}
