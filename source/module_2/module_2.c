@@ -1,12 +1,13 @@
 #include"module_2.h"
 
 void transcription(char* sequence,int taille){
-	char path_output[18]="sequenceARN.fasta";
-	int i=0;
-	int j=0;
+	//prend une séquence en paramètre qui va être la séquence transcrite, et une taille qui va servir principallement à la location mémoire de certaines variables
+	char path_output[18]="sequenceARN.fasta"; // on donne le nom du fichier ou la séquence transcrite sera sauvegarder
+	int i=0; //compteur de la sequence
+	int j=0;//compteur de la sequence_ARN
 
 	char* sequence_ARN = malloc(sizeof(sequence_ARN)*taille);
-	while(j<taille){
+	while(j<taille){ //tant qu'on n'a dépasser la taille de la séquence on continue
 		if(sequence[i]=='T'){		//procéde à la transcription
 			sequence_ARN[j]='U';
 		}
@@ -17,6 +18,7 @@ void transcription(char* sequence,int taille){
 		i++;
 	}
 	sequence_ARN[j]='\0';
+	//affichage et sauvegarde la sequence transcrite
 	printf("\ntranscription effectué:\n=>\nsequence:5'-%s-3'\n",sequence_ARN);
 	save_sequence(path_output,sequence_ARN);
 	free(sequence_ARN);
