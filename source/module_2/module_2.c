@@ -19,6 +19,7 @@ void transcription(char* sequence,int taille){
 	sequence_ARN[j]='\0';
 	printf("\ntranscription effectué:\n=>\nsequence:5'-%s-3'\n",sequence_ARN);
 	save_sequence(path_output,sequence_ARN);
+	free(sequence_ARN);
 }
 
 int module_2(){
@@ -38,6 +39,7 @@ int module_2(){
 	char* cds = malloc(sizeof(char)*taille_fichier2);
 	extract_sequence(fichier2,cds);
 	transcription(cds,taille_fichier2);
+	free(cds);
 	return 0;
 }
 

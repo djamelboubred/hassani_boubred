@@ -5,7 +5,11 @@
 #define TRUE 0
 #define FALSE 1
 
-//utils.c
+typedef struct proteine
+{
+  char id;
+  int polarite;
+}proteine;
 
 void stocker_nom_fichier(char* nom_fichier);
 void extract_sequence(FILE* fichier, char sequence[]);
@@ -13,18 +17,18 @@ void save_sequence(const char* path_output, char* sequence);
 int calcul_taille_fichier(FILE* fichier);
 
 
-//MODULE 1
+/*MODULE 1
 void sequence_complementaire(char sequence[], int taille,char sequence_comp[]);
 void recherche_sequence_codante(char sequence[],int taille);
 int recherche_max_cds(char sequence[], int* position, int i);
 int module_1();
 
 //MODULE 2
-void traduction(char sequence[], int taille);
+void transcription(char* sequence, int taille);
 int module_2();
 
 //MODULE 3
-void transcription(char* sequence, int taille);
+void traduction(char sequence[], int taille);
 int module_3();
 
 //MODULE 4
@@ -53,4 +57,4 @@ int calcul_taille_sequence(FILE* fichier);
 void extract_tableau_sequence(FILE* fichier, char sequence[]);
 char afficher_sequence_consensus(char tableau_sequence[],int taille,int nb_sequence);
 int calcul_nb_sequences(FILE* fichier);
-int module_6();
+int module_6();*/

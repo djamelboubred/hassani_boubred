@@ -85,7 +85,7 @@ void traduction(char sequence[],int taille){
 */
 	// erreur lors du remplissage du fichier sequenceAA.fasta, cette erreur est visible uniquement lors de l'appelle de la fonction save_sequence(path_output,sequence_AA); du module 3
 	// erreur est : malloc(): corrupted top size
-
+	free(sequence_AA);
 }
 
 int module_3(){
@@ -104,6 +104,7 @@ int module_3(){
   char* sequence_ARN = malloc(sizeof(char)*taille_fichier3);
   extract_sequence(fichier3,sequence_ARN);
   traduction(sequence_ARN,taille_fichier3);
+	free(sequence_ARN);
 	return 0;
 }
 

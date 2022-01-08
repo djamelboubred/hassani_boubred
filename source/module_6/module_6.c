@@ -118,7 +118,7 @@ void extract_tableau_sequence(FILE* fichier, char sequence[])
     k++;//on incremente k pour passer a la colonne suivante(=nucleotide suivant)
     nb_A=0; nb_T=0; nb_C=0; nb_G=0; nb_gap=0; score_identite=0;//
   }
-  printf("%s\n",sequence_consensus);
+  printf("sequence consensus:\n%s\n",sequence_consensus);
   return 0;
 }
 

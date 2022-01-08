@@ -1,6 +1,4 @@
-run-all:
-	gcc -Wall source/main.c source/utils/utils.c -I source/utils  -o results/all
-	./results/all
+
 
 run-m1:
 	gcc -Wall source/module_1/module_1.c source/utils/utils.c -I source/utils  -o results/m1
@@ -25,3 +23,15 @@ run-m5:
 run-m6:
 	gcc -Wall source/module_6/module_6.c source/utils/utils.c -Isource/utils  -o results/m6
 	./results/m6
+
+run-m7:
+	gcc -Wall source/module_7/module_7.c source/utils/utils.c -Isource/utils  -o results/m7
+	./results/m7
+
+run-all:
+		make run-m1
+		make run-m2
+		make run-m3
+		make run-m4
+		make run-m5
+		make run-m6

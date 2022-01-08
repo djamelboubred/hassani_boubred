@@ -109,7 +109,6 @@ int module_5(){
 			fprintf(stderr, "L'ouverture a échoué");
 			return EXIT_FAILURE;
 	}
-
   int taille1= calcul_taille_fichier(fichier1);
   int taille2= calcul_taille_fichier(fichier2);
   printf("%d   %d \n",taille1,taille2);

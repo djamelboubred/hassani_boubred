@@ -41,30 +41,21 @@ int calcul_taille(char sequence[])
 
 
 int module_4(){
-    printf("\n MODULE 4: Calcul du score d’identité entre deux séquences \n");
-    printf("L'ordinateur va vous demander à deux reprises de taper les 2 chemins menant à vos fichiers contenant vos sequences\n");
+  printf("\n MODULE 4: Calcul du score d’identité entre deux séquences \n");
+  printf("L'ordinateur va vous demander à deux reprises de taper les 2 chemins menant à vos fichiers contenant vos sequences\n");
 
-    printf("test1\n");
-    char* nom_fichier1=malloc(sizeof(char));
-    char* nom_fichier2=malloc(sizeof(char));
-    stocker_nom_fichier(nom_fichier1);
-    printf("test2\n");
+  char* nom_fichier1=malloc(sizeof(char));
+  char* nom_fichier2=malloc(sizeof(char));
+  stocker_nom_fichier(nom_fichier1);
 
-    stocker_nom_fichier(nom_fichier2);
-    printf("test3\n");
-
-    FILE* fichier1=fopen(nom_fichier1,"r");
-    printf("test4\n");
-
-    FILE* fichier2=fopen(nom_fichier2,"r");
-    printf("test5\n");
-
-    if (!fichier1 || !fichier2)
-    {
-  			fprintf(stderr, "L'ouverture a échoué");
-  			return EXIT_FAILURE;
-  	}
-    printf("test6\n");
+  stocker_nom_fichier(nom_fichier2);
+  FILE* fichier1=fopen(nom_fichier1,"r");
+  FILE* fichier2=fopen(nom_fichier2,"r");
+  if (!fichier1 || !fichier2)
+  {
+  		fprintf(stderr, "L'ouverture a échoué");
+  		return EXIT_FAILURE;
+  }
   int taille1= calcul_taille_fichier(fichier1);
   printf("test7\n");
 
@@ -81,6 +72,8 @@ int module_4(){
   extract_sequence(fichier2,sequence2);
 
   Calcul_element_identique(sequence1,sequence2);
+  free(sequence1);
+  free(sequence2);
   fclose(fichier1);
   fclose(fichier2);
   return 0;

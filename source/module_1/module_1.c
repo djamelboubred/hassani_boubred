@@ -199,10 +199,10 @@ void recherche_sequence_codante(char sequence[], int taille){
 }
 
 int module_1(){
-		printf("\n MODULE 1: Recherche de la séquence codante de taille maximale .\n");
-		char* nom_fichier1= malloc(sizeof(char));
-		stocker_nom_fichier(nom_fichier1);
-
+	printf("\n MODULE 1: Recherche de la séquence codante de taille maximale .\n");
+	char* nom_fichier1 = malloc(sizeof(char));
+	//if() a rajouter apres chaque malloc
+	stocker_nom_fichier(nom_fichier1);
 		FILE* fichier1 = fopen(nom_fichier1,"r");
 		if(!fichier1){
 			fprintf(stderr, "L'ouverture à échoué.\n");
@@ -219,6 +219,7 @@ int module_1(){
 		fclose(fichier1);
 
 		recherche_sequence_codante(sequence,taille_fichier1);
+		free(sequence);
 		return 0;
 }
 
