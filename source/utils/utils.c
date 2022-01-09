@@ -6,7 +6,6 @@ void stocker_nom_fichier(char* nom_fichier)
 {
   printf("\nVeuillez saisir le chemin vers votre fichier contenant la ou les séquences à analyser: ");
   scanf("%s",nom_fichier);
-  printf("%s\n",nom_fichier);
 }
 
 

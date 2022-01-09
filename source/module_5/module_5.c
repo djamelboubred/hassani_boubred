@@ -1,5 +1,8 @@
 #include "module_5.h"
 
+/*Permet de remplir la structure proteine (id,polarite,code_lettre)
+entrée: une lettre lu dans le fichier
+sortie: une variable proteine de type proteine*/
 
 proteine* creation_proteine(char lettre)
 {
@@ -21,13 +24,16 @@ proteine* creation_proteine(char lettre)
   return nvl_proteine;
 }
 
-
+/*Permet de calculer la taille d'une variable de type proteine
+entrée: une variable sequence de type proteine
+sortie: taille de la sequence proteique*/
 int calcul_taille_proteine(proteine sequence[])
 {
   int i=0;
   while(sequence[i].id!='\0') i++; /*Le dernier i sera la taille de la séquence*/
   return i;
 }
+
 
 void extract_sequence_de_proteine(FILE* fichier, proteine sequence[])
 {
@@ -111,7 +117,6 @@ int module_5(){
 	}
   int taille1= calcul_taille_fichier(fichier1);
   int taille2= calcul_taille_fichier(fichier2);
-  printf("%d   %d \n",taille1,taille2);
   if(taille1!=taille2)
   {
     printf("Attention : Comparaison de séquences de tailles differentes\n");

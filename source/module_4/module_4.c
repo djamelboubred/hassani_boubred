@@ -1,6 +1,8 @@
 #include "module_4.h"
 
-/*Pour calculer la taille d'une sequence ( pas dans un fichier mais dans un tableau)*/
+/*Permet de calculer la taille d'une sequence ( pas dans un fichier mais dans un tableau)
+entrée: sequence sous forme de tableau
+sortie: taille de la sequence */
 int calcul_taille(char sequence[])
 {
   int i=0;
@@ -8,7 +10,9 @@ int calcul_taille(char sequence[])
   return i;
 }
 
-/*Fonction principale, pour calculer le score d'identite*/
+/*Fonction principale du module, prermet de calculer le score d'identite
+entrée: 2 sequences sous forme de tableau
+sortie: ne renvoie rien */
  void Calcul_element_identique(char sequence1[],char sequence2[])
  {
    int i=0;/*compteur séquence 1*/
@@ -39,7 +43,8 @@ int calcul_taille(char sequence[])
    printf("-id- %s\n",id);
  }
 
-
+ /* fonction qui permet d'executer a la chaine les fonctions precedente du module 4,
+elle ne prend pas d'entrée et renvoie une erreur si le ou les fichiers n'ont pas pu etre ouvert*/
 int module_4(){
   printf("\n MODULE 4: Calcul du score d’identité entre deux séquences \n");
   printf("L'ordinateur va vous demander à deux reprises de taper les 2 chemins menant à vos fichiers contenant vos sequences\n");
@@ -79,7 +84,7 @@ int module_4(){
   return 0;
 }
 
-
+/*fonction main du module 4*/
 int main(){
   module_4();
 }

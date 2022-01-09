@@ -9,6 +9,8 @@ typedef struct proteine
 {
   char id;
   int polarite;
+  char code_lettre[4]; // ne pas oublier le '/0'
+
 }proteine;
 
 void stocker_nom_fichier(char* nom_fichier);
