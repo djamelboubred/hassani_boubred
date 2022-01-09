@@ -30,17 +30,17 @@ int recherche_max_cds(char sequence[], int* position, int cadre){
                                 	fin=TRUE;
                                         break;
                                 }
-                                if((sequence[i]=='\0')){
+                                if(sequence[i]=='\0'){
                                 	fin=TRUE;
                                         seq_complet = FALSE;
                                         break;
                                 }
-                                if((sequence[i+1]=='\0')){
+                                if(sequence[i+1]=='\0'){
                                 	fin=TRUE;
                                         seq_complet = FALSE; //FALSE car la séquence n'est pas complete donc on ne la prend pas en compte
                                         break;
                                 }
-				if((sequence[i+2]=='\0')){
+				if(sequence[i+2]=='\0'){
 	 				fin=TRUE;
                                         seq_complet = FALSE;
                                         break;
