@@ -79,7 +79,7 @@ void traduction(char sequence[],int taille){
 		i=i+3;
 		j++;
 	}
-	printf("sequence traduite :\t5'-%s-3'\n",sequence_AA);
+	printf("\n\nsequence traduite :\t5'-%s-3'\n\n\n",sequence_AA);
 /*	char path_output[17] = "sequenceAA.fasta";
         save_sequence(path_output,sequence_AA);
 */
