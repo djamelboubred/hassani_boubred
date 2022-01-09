@@ -84,9 +84,11 @@ void afficher_sequence_consensus(char tableau_sequence[],int taille,int nb_seque
   char sequence_consensus[taille];// sequence final representant score d'identite
   sequence_consensus[taille]='\0';
   taille ++; // On prend en compte le retour à la ligne (=\n) pour ne pas avoir de decalage
-  while(k!=taille){ // boucle qui permet d'avancer au sein de la colonne k(en descendant dans les sequences)
-    for(i=0;i<nb_sequence;i++){ // boucle qui traite chaque element de la ligne a indice i
-      if(tableau_sequence[i*taille+k]=='A') nb_A++;// i*taille permet d'avancer de 1 a chaque colonne, l'ajout de k permet d'avancer de 1 dans chaque ligne
+  while(k!=taille){ // boucle qui permet d'avancer au sein de la colonne k(en avancant de 1 en meme temps dans chaque sequences
+    for(i=0;i<nb_sequence;i++){ // boucle qui permet d'avancer au sein de la ligne i(en descendant de 1 a chaque fois pour traiter chaque sequence
+      // exemple: 2*taille+0 permet de traiter le premiere element de la 2eme ligne
+      // exemple: 2*taille+0 permet de traiter le deuxieme element de la 2eme ligne
+      if(tableau_sequence[i*taille+k]=='A') nb_A++;
       if(tableau_sequence[i*taille+k]=='T') nb_T++;
       if(tableau_sequence[i*taille+k]=='C') nb_C++;
       if(tableau_sequence[i*taille+k]=='G') nb_G++;
@@ -107,7 +109,7 @@ void afficher_sequence_consensus(char tableau_sequence[],int taille,int nb_seque
     if(score_identite>=80) sequence_consensus[k]='*';
     if(score_identite==100) sequence_consensus[k]=tableau_sequence[k];
 
-    k++;//on incremente k pour passer a la colonne suivante(=nucleotide suivant)
+    k++;////on incremente k en dehors de la boucle pour d'abord traiter chaque element d'indice i de chaque sequence
     nb_A=0; nb_T=0; nb_C=0; nb_G=0; nb_gap=0; score_identite=0;//
   }
   printf("sequence consensus:\n%s\n",sequence_consensus);
