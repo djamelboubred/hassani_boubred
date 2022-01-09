@@ -35,3 +35,4 @@ run-all:
 		make run-m4
 		make run-m5
 		make run-m6
+		make run-m7
